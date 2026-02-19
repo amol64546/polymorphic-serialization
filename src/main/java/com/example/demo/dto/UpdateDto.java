@@ -6,14 +6,14 @@ import lombok.Data;
 
 @JsonTypeInfo(
   use = JsonTypeInfo.Id.NAME,
-  property = "version"
+  property = "version",
+  visible = true
 )
 @JsonSubTypes({
-  @JsonSubTypes.Type(value = RequestV1.class, name = "1"),
-  @JsonSubTypes.Type(value = RequestV2.class, name = "2")
+  @JsonSubTypes.Type(value = UpdateV1.class, name = "1"),
+  @JsonSubTypes.Type(value = UpdateV2.class, name = "2")
 })
-public interface RequestDto {
-
-  int getVersion();
-
+@Data
+public abstract class UpdateDto {
+  private int version;
 }

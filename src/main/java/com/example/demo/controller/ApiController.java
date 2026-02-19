@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.RequestDto;
 import com.example.demo.dto.ResponseDto;
+import com.example.demo.dto.UpdateDto;
 import com.example.demo.service.ApiService;
 import com.example.demo.service.ApiServiceFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class ApiController {
   public ResponseEntity<Object> handleRequest(
     @RequestBody RequestDto requestDTO) {
 
-    ApiService<RequestDto> apiService = apiServiceFactory.getService(requestDTO.getVersion());
+    ApiService<RequestDto, UpdateDto> apiService = apiServiceFactory.getService(requestDTO.getVersion());
 
     // Call the correct service based on version
     ResponseDto response = apiService.processRequest(requestDTO);
