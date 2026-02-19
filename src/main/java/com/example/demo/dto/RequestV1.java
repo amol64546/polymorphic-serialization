@@ -1,13 +1,15 @@
 package com.example.demo.dto;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class RequestV1 implements RequestDto {
+public class RequestV1 extends RequestDto {
     private String name;
 
-    @Override
-    public int getVersion() {
-        return 1;
-    }
+//    @Override
+//    public int getVersion() {
+//        return 1;
+//    }
 }
