@@ -14,9 +14,9 @@ import lombok.Data;
   @JsonSubTypes.Type(value = RequestV2.class, name = "2")
 })
 @Data
-public class RequestDto {
+public abstract class RequestDto {
 
-  int version;
+  private int version;
 //  int getVersion();
 
 }
