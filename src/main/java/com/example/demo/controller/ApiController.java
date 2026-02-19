@@ -20,14 +20,27 @@ public class ApiController {
     this.apiServiceFactory = apiServiceFactory;
   }
 
-  @PostMapping
-  public ResponseEntity<Object> handleRequest(
+  @PostMapping("/create")
+  public ResponseEntity<Object> createRequest(
     @RequestBody RequestDto requestDTO) {
 
     ApiService<RequestDto, UpdateDto> apiService = apiServiceFactory.getService(requestDTO.getVersion());
 
     // Call the correct service based on version
     ResponseDto response = apiService.processRequest(requestDTO);
+
+    // The response is polymorphic and Jackson will handle the serialization
+    return ResponseEntity.ok(response);
+  }
+
+  @PostMapping("/update")
+  public ResponseEntity<Object> updateRequest(
+    @RequestBody UpdateDto requestDTO) {
+
+    ApiService<RequestDto, UpdateDto> apiService = apiServiceFactory.getService(requestDTO.getVersion());
+
+    // Call the correct service based on version
+    ResponseDto response = apiService.processUpdate(requestDTO);
 
     // The response is polymorphic and Jackson will handle the serialization
     return ResponseEntity.ok(response);

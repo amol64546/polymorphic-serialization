@@ -1,13 +1,10 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.RequestV2;
-import com.example.demo.dto.ResponseDto;
-import com.example.demo.dto.ResponseV2;
-import com.example.demo.dto.UpdateDto;
+import com.example.demo.dto.*;
 import org.springframework.stereotype.Service;
 
 @Service("v2_api_service")
-public class ApiServiceV2 implements ApiService<RequestV2, UpdateDto> {
+public class ApiServiceV2 implements ApiService<RequestV2, UpdateV2> {
 
     @Override
     public ResponseV2 processRequest(RequestV2 requestDTO) {
@@ -18,7 +15,10 @@ public class ApiServiceV2 implements ApiService<RequestV2, UpdateDto> {
     }
 
     @Override
-    public ResponseDto processUpdate(UpdateDto updateDTO) {
-        return null;
+    public ResponseDto processUpdate(UpdateV2 updateDTO) {
+        System.out.println("Processing update for v2");
+        ResponseV2 response = new ResponseV2();
+        response.setName("Hello, v2 " + updateDTO.getName() + "!");
+        return response;
     }
 }
